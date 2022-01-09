@@ -11,18 +11,18 @@ const forecast = (latitude, longitude, callback) => {
   request({ url: url, json: true }, (error, response) => {
     if (error) {
       callback("unable to connect to location service!", undefined);
-    } 
-    else if (response.body.error) {
+    } else if (response.body.error) {
       callback("unable to find location!", undefined);
-    }
-     else {
+    } else {
       callback(
         undefined,
         response.body.current.weather_descriptions[0] +
           ". It is currently " +
           response.body.current.temperature +
           " degrees out,feels like " +
-          response.body.current.feelslike
+          response.body.current.feelslike +
+          ".Humidity is " +
+          response.body.current.humidity+"%"
       );
     }
   });
